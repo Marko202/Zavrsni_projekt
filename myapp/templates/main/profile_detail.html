@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.user.username }} - Profile</title>
+</head>
+<body>
+    <h1>{{ profile.user.username }} - Profile</h1>
+    <p>Address: {{ profile.address }}</p>
+    <p>Phone Number: {{ profile.phone_number }}</p>
+    <p>Seller: {% if profile.is_seller %}Yes{% else %}No{% endif %}</p>
+    <p>Bio: {{ profile.bio }}</p>
+</body>
+</html>
