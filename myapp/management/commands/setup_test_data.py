@@ -1,8 +1,8 @@
 import random
 from django.db import transaction
 from django.core.management.base import BaseCommand
-from main.models import Profile, Product, Category, Order, Review, Message
-from main.factories import (
+from myapp.models import Profile, Product, Category, Order, Review, Message
+from myapp.factory import (
     ProfileFactory,
     ProductFactory,
     CategoryFactory,

@@ -1,7 +1,7 @@
 import factory
 from factory.django import DjangoModelFactory
 from faker import Faker
-from main.models import Profile, Product, Category, Order, Review, Message
+from myapp.models import Profile, Product, Category, Order,OrderItem, Review, Message
 from django.contrib.auth.models import User
 
 fake = Faker()
