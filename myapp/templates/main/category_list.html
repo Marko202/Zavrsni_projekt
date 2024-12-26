@@ -7,11 +7,13 @@
 </head>
 <body>
     <h1>Categories</h1>
+    <a href="{% url 'category_create' %}">Create New Category</a>
     <ul>
-        {% for category in object_list %}
+        {% for category in categories %}
             <li>
-                <a href="{% url 'category_detail' category.id %}">{{ category.name }}</a>
-                <p>{{ category.description }}</p>
+                <a href="{% url 'category_detail' category.pk %}">{{ category.name }}</a>
+                - <a href="{% url 'category_update' category.pk %}">Edit</a>
+                - <a href="{% url 'category_delete' category.pk %}">Delete</a>
             </li>
         {% endfor %}
     </ul>

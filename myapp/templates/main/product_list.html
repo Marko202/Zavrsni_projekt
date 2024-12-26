@@ -3,19 +3,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Product List</title>
+    <title>Products</title>
 </head>
 <body>
-{% block content %}
-    <h2>Product</h2>
+    <h1>Products</h1>
+    <a href="{% url 'product_create' %}">Create New Product</a>
     <ul>
-        {% for product in object_list %}
+        {% for product in products %}
             <li>
-                Name: {{ product.name }}<br>
-                Description: {{ product.description }}
+                <a href="{% url 'product_detail' product.pk %}">{{ product.name }}</a>
+                - <a href="{% url 'product_update' product.pk %}">Edit</a>
+                - <a href="{% url 'product_delete' product.pk %}">Delete</a>
             </li>
         {% endfor %}
     </ul>
-{% endblock %}
 </body>
 </html>

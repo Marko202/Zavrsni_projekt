@@ -11,5 +11,9 @@
     <p>Phone Number: {{ profile.phone_number }}</p>
     <p>Seller: {% if profile.is_seller %}Yes{% else %}No{% endif %}</p>
     <p>Bio: {{ profile.bio }}</p>
+    <a href="{% url 'profile_update' profile.pk %}">Edit Profile</a> |
+    <a href="{% url 'profile_delete' profile.pk %}">Delete Profile</a>
+    <br><br>
+    <a href="{% url 'profile_list' %}">Back to Profiles</a>
 </body>
 </html>

@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Category: {{ category.name }}</title>
+</head>
+<body>
+    <h1>{{ category.name }}</h1>
+    <p>Description: {{ category.description }}</p>
+
+    <a href="{% url 'category_update' category.pk %}">Edit</a>
+    <a href="{% url 'category_list' %}">Back to Categories List</a>
+</body>
+</html>
