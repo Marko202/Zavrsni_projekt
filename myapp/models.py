@@ -4,7 +4,7 @@ from django.db import models
 class Profile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     address = models.CharField(max_length=255)
-    phone_number = models.CharField(max_length=15, blank=True, null=True)
+    phone_number = models.CharField(max_length=150, blank=True, null=True)
     is_seller = models.BooleanField(default=False)
     bio = models.TextField(blank=True, null=True)
 
@@ -26,7 +26,7 @@ class Product(models.Model):
         return self.name
 
 class Category(models.Model):
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=150)
     description = models.TextField(blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)
 

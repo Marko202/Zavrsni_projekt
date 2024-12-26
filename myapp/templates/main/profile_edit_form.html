@@ -9,34 +9,8 @@
     <h1>Edit Profile for {{ object.user.username }}</h1>
     <form method="post">
         {% csrf_token %}
-        <div class="form-group">
-            <label for="id_username">Username:</label>
-            {{ user_form.username }}
-        </div>
-        <div class="form-group">
-            <label for="id_email">Email:</label>
-            {{ user_form.email }}
-        </div>
-        <div class="form-group">
-            <label for="id_password1">Password:</label>
-            {{ user_form.password1 }}
-        </div>
-        <div class="form-group">
-            <label for="id_address">Address:</label>
-            {{ form.address }}
-        </div>
-        <div class="form-group">
-            <label for="id_phone_number">Phone Number:</label>
-            {{ form.phone_number }}
-        </div>
-        <div class="form-group">
-            <label for="id_is_seller">Is Seller:</label>
-            {{ form.is_seller }}
-        </div>
-        <div class="form-group">
-            <label for="id_bio">Bio:</label>
-            {{ form.bio }}
-        </div>
+        {{ form.as_p }}
+        
         <button type="submit">Save Changes</button>
     </form>
     <a href="{% url 'profile_list' %}">Cancel</a>

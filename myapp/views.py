@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 #from django.contrib import message
 from django.contrib.auth import get_user_model
 
-# Home and Registration
+# Home and Registration______________________________________________________________________________________
 def index(request):
     return render(request, 'main/index.html')
 
@@ -18,17 +18,17 @@ def register(request):
     if request.method == 'POST':
         form = RegistracijaForma(request.POST)
         if form.is_valid():
-            user = form.save()  # Saves the user, including the password fields
+            user = form.save()
             username = form.cleaned_data['username']
-            password = form.cleaned_data['password1']  # The password1 entered
+            password = form.cleaned_data['password1']
             user = authenticate(username=username, password=password)
             login(request, user)
-            return redirect('index')  # Redirect to your home page
+            return redirect('index')
     else:
         form = RegistracijaForma()
     return render(request, 'registration/register.html', {'form': form})
 
-# Seller Products
+# Seller Products______________________________________________________________________________________
 class SellerProductList(ListView):
     template_name = 'main/seller_products.html'
     context_object_name = 'products'
@@ -37,7 +37,7 @@ class SellerProductList(ListView):
         self.user = get_object_or_404(Profile, user__username=self.kwargs['seller'])
         return Product.objects.filter(seller=self.user)
 
-# Profiles CRUD
+# Profiles CRUD______________________________________________________________________________________
 class ProfileListView(ListView):
     model = Profile
     template_name = 'main/profile_list.html'
@@ -53,39 +53,19 @@ class ProfileCreateView(CreateView):
     form_class = UserProfileForm
     template_name = 'main/profile_form.html'
     success_url = reverse_lazy('profile_list')
-    
-    def form_valid(self, form):
-        # Save the user and profile in one go
-        user = form.save()
-        #messages.success(self.request, f'User {user.username} has been successfully created!')
-        return redirect(self.success_url)
 
 class ProfileUpdateView(UpdateView):
     model = Profile
     form_class = ProfileForm
     template_name = 'main/profile_edit_form.html'
-    success_url = reverse_lazy('profile_list')  # This will redirect to /profiles/ after saving
-
-    def get_object(self, queryset=None):
-        # Fetch the Profile based on the pk
-        return get_object_or_404(Profile, pk=self.kwargs['pk'])
-
-    def form_valid(self, form):
-        # Save the changes to the Profile and associated User if necessary
-        profile = form.save(commit=False)
-        profile.save()  # Save the profile
-        return super().form_valid(form)  # Redirects after saving
-    
-    def get_success_url(self):
-        # This returns the URL to redirect after the form is valid
-        return reverse_lazy('profile_list')
+    success_url = reverse_lazy('profile_list')
 
 class ProfileDeleteView(DeleteView):
     model = Profile
     template_name = 'main/profile_confirm_delete.html'
     success_url = reverse_lazy('profile_list')
 
-# Products CRUD
+# Products CRUD______________________________________________________________________________________
 class ProductListView(ListView):
     model = Product
     template_name = 'main/product_list.html'
@@ -113,7 +93,7 @@ class ProductDeleteView(DeleteView):
     template_name = 'main/product_confirm_delete.html'
     success_url = reverse_lazy('product_list')
 
-# Categories CRUD
+# Categories CRUD______________________________________________________________________________________
 class CategoryListView(ListView):
     model = Category
     template_name = 'main/category_list.html'
@@ -141,7 +121,7 @@ class CategoryDeleteView(DeleteView):
     template_name = 'main/category_confirm_delete.html'
     success_url = reverse_lazy('category_list')
 
-# Orders CRUD
+# Orders CRUD______________________________________________________________________________________
 class OrderListView(ListView):
     model = Order
     template_name = 'main/order_list.html'
@@ -169,7 +149,7 @@ class OrderDeleteView(DeleteView):
     template_name = 'main/order_confirm_delete.html'
     success_url = reverse_lazy('order_list')
 
-# Reviews CRUD
+# Reviews CRUD______________________________________________________________________________________
 class ReviewListView(ListView):
     model = Review
     template_name = 'main/review_list.html'
@@ -197,7 +177,7 @@ class ReviewDeleteView(DeleteView):
     template_name = 'main/review_confirm_delete.html'
     success_url = reverse_lazy('review_list')
 
-# Messages CRUD
+# Messages CRUD______________________________________________________________________________________
 class MessageListView(ListView):
     model = Message
     template_name = 'main/message_list.html'

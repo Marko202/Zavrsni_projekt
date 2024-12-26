@@ -27,12 +27,10 @@ class UserProfileForm(UserCreationForm):
         fields = ['username', 'email', 'password1', 'password2']
 
     def save(self, commit=True):
-        # First, save the user object
         user = super().save(commit=False)
         if commit:
             user.save()
 
-        # Now, create the profile
         profile = Profile(
             user=user,
             address=self.cleaned_data['address'],
